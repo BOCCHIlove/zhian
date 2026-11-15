@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* 知安设计系统：奶油底色 + 青绿主色（安全、信任）+ 蜜桃点缀（温柔） */
+@theme {
+  --color-cream: #fbf7f1;
+  --color-cream-deep: #f4ece1;
+  --color-ink: #1d2b2f;
+  --color-ink-soft: #52646a;
+  --color-brand: #0f766e;
+  --color-brand-strong: #0b5c56;
+  --color-brand-soft: #d6efea;
+  --color-peach: #f3a888;
+  --color-peach-soft: #fde7dc;
+  --color-danger: #e0524f;
+  --color-danger-soft: #fde4e2;
+  --color-warn: #e59a2c;
+  --color-warn-soft: #fdf0d8;
+  --color-safe: #2f9e6e;
+  --color-safe-soft: #dcf3e7;
+
+  --font-sans: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  --font-display: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", serif;
+
+  --shadow-soft: 0 10px 30px -12px rgb(29 43 47 / 0.18);
+  --shadow-glow: 0 20px 60px -20px rgb(15 118 110 / 0.45);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-blink: blink 1s steps(2) infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+  }
+  ::selection {
+    background: var(--color-brand-soft);
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-3xl border border-white/70 bg-white/80 shadow-soft backdrop-blur;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-medium text-white shadow-glow transition hover:bg-brand-strong active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/10 bg-white/70 px-6 py-3 font-medium text-ink transition hover:border-brand/40 hover:text-brand active:scale-[0.98];
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium;
+  }
+  .skeleton {
+    background: linear-gradient(90deg, #efe7dc 25%, #f8f2ea 50%, #efe7dc 75%);
+    background-size: 200% 100%;
+    @apply animate-shimmer rounded-xl;
+  }
+  .bg-dots {
+    background-image: radial-gradient(rgb(15 118 110 / 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
